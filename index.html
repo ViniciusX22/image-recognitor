@@ -6,6 +6,13 @@
     <title>Image Recognitor</title>
 </head>
 <body>
-    
+    <input type="file" name="img" id="image" onchange="handleFile(event)">
+    <canvas id="c"></canvas>
+    <script src="js/services/ConnectionFactory.js"></script>
+    <script src="js/libs/load-image.all.min.js"></script>
+    <script src="js/helpers/FileManager.js"></script>
+    <script src="js/helpers/DataNormalizer.js"></script>
+    <script src="js/views/ImageRecognitorView.js"></script>
+    <script src="js/teste.js"></script>
 </body>
 </html>
