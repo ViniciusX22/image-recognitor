@@ -26,26 +26,22 @@ class FileManager {
             FileManager.downloadFile(blobs[i], !names.length || (names.length && i == 0) ? name : names[i-1]);
     }
 
-    static loadImage (image, preferredWidth){
+    static loadImage (image, maxWidth, maxHeight){
         return new Promise((resolve, reject) => {
-            try {
-                loadImage.parseMetaData(image, data =>
-                    loadImage(
-                        image,
-                        resolve,
-                        preferredWidth ? {
-                            canvas: true,
-                            orientation: data.exif ? data.exif.get("Orientation") : 0,
-                            maxWidth: preferredWidth
-                        }:{
-                            canvas: true,
-                            orientation: data.exif ? data.exif.get("Orientation") : 0
-                        }
-                    )
+            let opts = {canvas: true};
+            if(maxWidth) opts.maxWidth = maxWidth;
+            if(maxHeight) opts.maxHeight = maxHeight;
+            loadImage.parseMetaData(image, data => {
+                opts.orientarion = data.exif ? data.exif.get("Orientation") : 0;
+                loadImage(
+                    image,
+                    img => {
+                        if(img.type == 'error') reject("Error loading image");
+                        else resolve(img);
+                    },
+                    opts
                 );
-            } catch (e) {
-                reject(e.message);
-            }
+            });
         })
     }
 
