@@ -47,7 +47,7 @@ function handleFile(e) {
                         trainingData.output = {'9':1};
                 }
                 console.log(trainingData.output);
-                net.train([trainingData]);
+                net.train(trainingData);
             }
             $("#btn-train").disabled = false;
         })
