@@ -2,7 +2,7 @@
 
 ## A simple number recognitor in images
 
-### Features:
+### Features (WIP):
 - Get number images from local storage and train the Neural Network with those images.
 - Get any image and return the its represented number if there was anyone.
 
